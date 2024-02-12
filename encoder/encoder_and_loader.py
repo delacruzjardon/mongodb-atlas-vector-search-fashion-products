@@ -8,7 +8,13 @@ sys.path.insert(1, '../config/')
 from config_database import mongo_uri, db, collection
 
 preTrainedModelName = "clip-ViT-L-14"
-directoryThatIncludesImages = (sys.argv[1])
+
+
+#directoryThatIncludesImages = (sys.argv[1])
+full_path = os.path.realpath(__file__)
+path, filename = os.path.split(full_path)
+directoryThatIncludesImages = os.path.dirname(path) 
+directoryThatIncludesImages +=  "/encoder/images"
 
 # number of worker threads to initialize that each thread encodes images in the folder concurrently
 NUM_OF_WORKERS=8
@@ -68,5 +74,3 @@ with concurrent.futures.ThreadPoolExecutor(max_workers = NUM_OF_WORKERS) as exec
     for completed_future in concurrent.futures.as_completed(futures):
         result = completed_future.result()
         print(f"Result: {result}")
-
-   
