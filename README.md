@@ -63,26 +63,26 @@ Please create the search index on the collection specified in the configuration 
 
 ```json
 {
-  "mappings": {
-    "fields": {
-      "imageVector": [
-        {
-          "dimensions": 768,
-          "similarity": "cosine",
-          "type": "knnVector"
-        }
-      ],
-      "price": {
-        "type": "number"
-      },
-      "averageRating": {
-         "type": "number"
-      },
-      "discountPercentage": {
-        "type": "number"
-      }
+  "fields": [
+    {
+      "numDimensions": 768,
+      "path": "imageVector",
+      "similarity": "cosine",
+      "type": "vector"
+    },
+    {
+      "path": "price",
+      "type": "filter"
+    },
+    {
+      "path": "averageRating",
+      "type": "filter"
+    },
+    {
+      "path": "discountPercentage",
+      "type": "filter"
     }
-  }
+  ]
 }
 ```
 
