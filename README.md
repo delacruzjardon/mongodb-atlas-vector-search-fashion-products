@@ -57,7 +57,7 @@ Another example:
 
 Please make the necessary changes to the `config/config_database.py` file by updating the database connection string, as well as the details of the database and collection.
 
-## Create the Search Index
+## Create the Atlas Vector Search Index
 
 Please create the search index on the collection specified in the configuration file, and make sure to name the index as `default `. Use the following JSON for the index creation:
 
