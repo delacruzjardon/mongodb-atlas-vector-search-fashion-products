@@ -26,13 +26,14 @@ def search():
     vector_query = model.encode(vector_text).tolist()
     pipeline = [
         {
-            "$search": {
+            "$vectorSearch": {
                 "index": "default",
-                "knnBeta": {
-                    "vector": vector_query,
-                    "path": "imageVector",
-                    "k": 10
-                }
+                "path": "imageVector",
+                "queryVector": vector_query,
+                "numCandidates": 150,
+                "limit": 10
+
+               
             }
         },
         {
@@ -95,20 +96,21 @@ def searchAdvanced():
                                 "gte": minRating
                             }
                         }
-                    ],
-                    "must": [
-                        {
-                            "knnBeta": {
-                                "vector": vector_query,
-                                "path": "imageVector",
-                                "k": 10
-                            }
-                        }
                     ]
                 }
                 
+            },
+             "$vectorSearch": {
+                "index": "default",
+                "path": "imageVector",
+                "queryVector": vector_query,
+                "numCandidates": 150,
+                "limit": 10
+
+               
             }
         },
+       
         {
             "$project": {
                 "imageVector": {"$slice": ["$imageVector", 5]},
@@ -147,3 +149,4 @@ def advanced():
 
 if __name__ == '__main__':
     app.run(host="localhost", port=5010, debug=True)
+
