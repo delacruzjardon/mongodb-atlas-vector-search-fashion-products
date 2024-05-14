@@ -28,6 +28,11 @@ product_collection.delete_many({}) # make sure the target collection is empty
 model = SentenceTransformer(preTrainedModelName)
 
 files = [] 
+
+def parse(f):
+    new_string = f.split('/')[-1].split('.')[0]
+    return new_string+'.jpg'
+
 for filename in os.listdir(directoryThatIncludesImages):
     f = os.path.join(directoryThatIncludesImages, filename)
     files.append(f)
@@ -39,7 +44,7 @@ def vectorize(imageFiles,threadNo):
         if os.path.isfile(f):
             encoded = model.encode(Image.open(f)).tolist()
             image = {
-                "imageFile": f,
+                "imageFile": parse(f),
                 "imageVector": encoded,
                 "price": round(random.uniform(5.0, 100.0),2),
                 "discountPercentage" : random.randint(5,25),
