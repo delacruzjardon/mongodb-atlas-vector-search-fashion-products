@@ -59,7 +59,7 @@ Please make the necessary changes to the `config/config_database.py` file by upd
 
 ## Create the Atlas Vector Search Index
 
-Please create the search index on the collection specified in the configuration file, and make sure to name the index as `default `. Use the following JSON for the index creation:
+Please create the search index on the collection specified in the configuration file, and make sure to name the index as `imgfashion`. Use the following JSON for the index creation:
 
 ```json
 {
