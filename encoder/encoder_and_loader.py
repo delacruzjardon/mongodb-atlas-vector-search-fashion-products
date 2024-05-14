@@ -31,7 +31,7 @@ files = []
 
 def parse(f):
     new_string = f.split('/')[-1].split('.')[0]
-    return new_string+'.jpg'
+    return 'images/'+ new_string + '.jpg'
 
 for filename in os.listdir(directoryThatIncludesImages):
     f = os.path.join(directoryThatIncludesImages, filename)
@@ -79,3 +79,4 @@ with concurrent.futures.ThreadPoolExecutor(max_workers = NUM_OF_WORKERS) as exec
     for completed_future in concurrent.futures.as_completed(futures):
         result = completed_future.result()
         print(f"Result: {result}")
+
